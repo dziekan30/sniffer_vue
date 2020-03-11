@@ -1,18 +1,52 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Welcome to Sniffer!!!</h1>
+
+    <div v-for="dog in dogs">
+      <router-link v-bind:to="'/dogs/' + dog.id">
+        <!-- <div v-for="image in dog.images">  
+          <img v-bind:src="image.image_url" v-bind:alt="dog.name">
+        </div> -->
+          <div>
+            <h1>Name: {{ dog.name }}</h1>
+            <h1>Desc: {{ dog.breed_description }}</h1>
+            <h1>Bio: {{ dog.bio }}</h1>
+            <h1>Status: {{ dog.active_status }}</h1>
+            <h1>Size: {{ dog.size }}</h1>
+            <h1>Latitude: {{ dog.latitude }}</h1>
+            <h1>Longitude: {{ dog.longitude }}</h1>
+            <h1>User Id: {{ dog.user_id }}</h1>
+            <h1>Price: {{ dog.price }}</h1>
+            <h1>Address: {{ dog.address }}</h1>
+            <h1>City: {{ dog.city }}</h1>
+            <h1>Zipcode: {{ dog.zipcode }}</h1>
+          </div>
+      </router-link>
+    </div>
+   <!--  <h2>{{dogs}}</h2> -->
   </div>
 </template>
 
+<style>
+</style>
+
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  var axios = require("axios")
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+  data: function() {
+    return {
+      dogs: []
+    };
+  },
+  created: function() {
+    axios
+      .get("/api/dogs")
+      .then(response => {
+        this.dogs = response.data;
+        console.log(response.data)
+      });
+  },
+  methods: {}
+};
 </script>

@@ -1,23 +1,29 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+import Signup from '../views/Signup.vue';
+import Login from '../views/Login.vue';
+import Logout from '../views/Logout.vue';
+
+import Home from '../views/Home.vue';
+import DogsEdit from '../views/DogsEdit.vue';
+import DogsNew from '../views/DogsNew.vue';
+import DogsShow from '../views/DogsShow.vue';
+
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  { path: '/signup', name: 'signup', component: Signup },
+  { path: '/login', name: 'login', component: Login },
+  { path: '/logout', name: 'logout', component: Logout },
+
+  { path: '/', name: 'home', component: Home },
+  { path: '/dogs/new', name: 'dogs-new', component: DogsNew },
+  { path: '/dogs/:id', name: 'dogs-show', component: DogsShow },
+  { path: '/dogs/:id/edit', name: 'dogs-edit', component: DogsEdit }
+
+
 ]
 
 const router = new VueRouter({
