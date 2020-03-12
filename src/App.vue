@@ -11,6 +11,12 @@
     </div>
     <router-view/>
   </div>
+
+
+   <!--  <div>
+      <input type="text" name="nameFilter">
+    </div> -->
+    
 </template>
 
 <style>

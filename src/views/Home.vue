@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <h1>Welcome to Sniffer!!!</h1>
+    <div>
+      <input type="text" name="nameFilter">
+    </div>
 
     <div v-for="dog in dogs">
       <router-link v-bind:to="'/dogs/' + dog.id">
@@ -31,12 +34,14 @@
 </style>
 
 <script>
-  var axios = require("axios")
+  var axios = require("axios");
+  import Vue2Filters from 'vue2-filters';
 
 export default {
   data: function() {
     return {
-      dogs: []
+      dogs: [],
+      nameFilter: ""
     };
   },
   created: function() {
@@ -47,6 +52,7 @@ export default {
         console.log(response.data)
       });
   },
-  methods: {}
+  methods: {},
+  mixins: [Vue2Filters.mixin]
 };
 </script>
