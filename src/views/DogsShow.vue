@@ -13,12 +13,12 @@
     <h2 class="text-center">{{ dog.city }}</h2>
     <h2 class="text-center">{{ dog.zipcode }}</h2>
 
-    <div v-if="jwt">
-<!--             <div v-if="current_user === dog.user_id">
- -->              
-            <router-link class="btn btn-info m-2" v-bind:to="'/dogs/' + dog.id + '/edit'">Edit</router-link>
-            <button class="btn btn-info m-2" v-on:click="destroyDog()">Delete</button>
-          <!--   </div> -->
+    
+    <button class="btn btn-info m-2" v-on:click="sendEmail">Request Apoitment</button>
+
+    <div v-if="$parent.userId == dog.user_id"> 
+      <router-link class="btn btn-info m-2" v-bind:to="'/dogs/' + dog.id + '/edit'">Edit</router-link>
+      <button class="btn btn-info m-2" v-on:click="destroyDog()">Delete</button>
     </div>
      
    <!--    <div v-for=" image in dog.images" class="col-md-6">
@@ -26,7 +26,6 @@
         <button @click="destroyImage(image)">destroy</button>
     </div>
  -->
-    
   </div>
 </template>
 
@@ -57,9 +56,7 @@ export default {
         //           id: "",
         //           image_url: ""
         //           }] 
-      },
-      userId: "",
-      jwt: ""
+      }
     };
   },
   created: function() {
@@ -68,11 +65,6 @@ export default {
       .then(response => {
         this.dog = response.data;
       });
-
-    var userId = localStorage.getItem("userId");
-    if (userId) {
-      this.userId = userId;
-    }
   },
   methods: {
     destroyDog: function() {
@@ -81,6 +73,9 @@ export default {
         .then(response => {
           this.$router.push("/");
         });
+    },
+    sendEmail: function() {
+      
     }
     // destroyImage: function(inputImage) {
     //   axios

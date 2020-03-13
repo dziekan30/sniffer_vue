@@ -11,12 +11,9 @@
     </div>
     <router-view/>
   </div>
-
-
    <!--  <div>
       <input type="text" name="nameFilter">
     </div> -->
-    
 </template>
 
 <style>
@@ -41,3 +38,22 @@
   color: #42b983;
 }
 </style>
+
+<script>
+
+export default {
+  data: function() {
+    return {
+      userId: ""
+    };
+  },
+  created: function() {
+    var userId = localStorage.getItem("userId");
+    if (userId) {
+      this.userId = userId;
+    }
+
+  }
+}
+
+</script>
