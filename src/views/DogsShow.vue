@@ -14,7 +14,10 @@
     <h2 class="text-center">{{ dog.zipcode }}</h2>
 
     
-    <button class="btn btn-info m-2" v-on:click="sendEmail">Request Apoitment</button>
+    <button class="btn btn-info m-2" v-on:click="sendRequest()">Request Apoitment</button>
+    <div>  
+      <button class="btn btn-info m-2" v-on:click="showRequest()">Show Requests</button>
+    </div>
 
     <div v-if="$parent.userId == dog.user_id"> 
       <router-link class="btn btn-info m-2" v-bind:to="'/dogs/' + dog.id + '/edit'">Edit</router-link>
@@ -66,6 +69,7 @@ export default {
         this.dog = response.data;
       });
   },
+  
   methods: {
     destroyDog: function() {
       axios
@@ -74,9 +78,21 @@ export default {
           this.$router.push("/");
         });
     },
-    sendEmail: function() {
-      
+    sendRequest: function() {
+      var clientParams = {
+        dog_id: this.dog_id
+      };
+
+      axios
+        .post("/api/requests/", clientParams)
+        .then(response => {
+          this.$router.push("/requests")
+        });
+    },
+    showRequest: function() {
+      this.$router.push("/requests")
     }
+
     // destroyImage: function(inputImage) {
     //   axios
     //     .delete("/api/images/" + inputImage.id)
