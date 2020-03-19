@@ -11,23 +11,26 @@
           <img v-bind:src="image.image_url" v-bind:alt="dog.name">
         </div> -->
           <div>
-            <h1>Name: {{ dog.name }}</h1>
-            <h1>Desc: {{ dog.breed_description }}</h1>
-            <h1>Bio: {{ dog.bio }}</h1>
-            <!-- <h1>Status: {{ dog.active_status }}</h1>
-            <h1>Size: {{ dog.size }}</h1>
-            <h1>Latitude: {{ dog.latitude }}</h1>
-            <h1>Longitude: {{ dog.longitude }}</h1>
-            <h1>User Id: {{ dog.user_id }}</h1>
-            <h1>Price: {{ dog.price }}</h1>
-            <h1>Address: {{ dog.address }}</h1>
-            <h1>City: {{ dog.city }}</h1>
-            <h1>Zipcode: {{ dog.zipcode }}</h1> -->
-            <h1>Breeds: {{ dog.breeds }}</h1>
+            <h3>Name: {{ dog.name }}</h3>
+            <h3>Breed:</h3>
+            <div v-for="breed in dog.breeds">
+                <li>
+                  {{ breed.name }}
+                </li>
+            </div>
+            <h3>Bio: {{ dog.bio }}</h3>
+            <h3>Available: {{ dog.active_status }}</h3>
+            <h3>Size: {{ dog.size }}</h3>
+            <h3>Price: {{ dog.price }}</h3>
+            <h3>Address: {{ dog.address }}</h3>
+            <h3>City: {{ dog.city }}</h3>
+            <h3>Zipcode: {{ dog.zipcode }}</h3>
+            <br>
+            <br>
           </div>
       </router-link>
     </div>
-   <!--  <h2>{{dogs}}</h2> -->
+<!--     <h2>{{dogs}}</h2> -->
   </div>
 </template>
 
@@ -35,8 +38,8 @@
 </style>
 
 <script>
-  var axios = require("axios");
-  import Vue2Filters from 'vue2-filters';
+var axios = require("axios");
+import Vue2Filters from 'vue2-filters';
 
 export default {
   data: function() {
@@ -51,14 +54,12 @@ export default {
         .get("/api/dogs?breed=" + this.$route.query.breed)
         .then(response => {
           this.dogs = response.data;
-          // console.log(response.data)
         });
     } else {
       axios
         .get("/api/dogs")
         .then(response => {
           this.dogs = response.data;
-          // console.log(response.data)
         });
     }
   },
@@ -70,14 +71,12 @@ export default {
           .get("/api/dogs?breed=" + to.query.breed)
           .then(response => {
             this.dogs = response.data;
-            // console.log(response.data)
           });
       } else {
         axios
           .get("/api/dogs")
           .then(response => {
             this.dogs = response.data;
-            // console.log(response.data)
           });
       }
   }

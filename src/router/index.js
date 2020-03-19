@@ -11,7 +11,7 @@ import DogsShow from '../views/DogsShow.vue';
 import DogsEdit from '../views/DogsEdit.vue';
 
 import RequestsIndex from '../views/RequestsIndex.vue';
-import RequestsNew from '../views/RequestsNew.vue';
+// import RequestsNew from '../views/RequestsNew.vue';
 import RequestsShow from '../views/RequestsShow.vue';
 import RequestsEdit from '../views/RequestsEdit.vue';
 
@@ -32,7 +32,7 @@ const routes = [
   { path: '/dogs/:id/edit', name: 'dogs-edit', component: DogsEdit },
 
   { path: '/requests', name: 'requests-index', component: RequestsIndex },
-  { path: '/requests/new', name: 'requests-new', component: RequestsNew },
+  // { path: '/requests/new', name: 'requests-new', component: RequestsNew },
   { path: '/requests/:id', name: 'requests-show', component: RequestsShow },
   { path: '/requests/:id/edit', name: 'requests-edit', component: RequestsEdit },
 

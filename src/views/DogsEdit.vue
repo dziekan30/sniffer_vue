@@ -14,22 +14,16 @@
           <label>Name: </label>
           <input class="form-control" type="text" v-model="dog.name">
         </div>
-
-       <!--  <div class="form-group">
-          <label>Breed: </label>
-          <input class="form-control" type="text" v-model="dog.breed_description">
-        </div> -->
-
+        
         <label>Breed: </label>
-      <!--   <div v-for="breed in breeds"> -->
-            <ul>
+
+        <ul>
           <li v-for="breed in breeds">
             <input type="checkbox" v-bind:value="breed.id" v-model="checkedIds" >
             <label for="checkbox">{{breed.name}}</label>
-<!--           </div> -->
-        </li>
+          </li>
+        </ul>
         <span>Checked id: {{ checkedIds }}</span>
-            </ul>
 
 
         <div class="form-group">
@@ -47,21 +41,11 @@
           <input class="form-control" type="text" v-model="dog.size">
         </div>
 
-        <div class="form-group">
-          <label>Latitude: </label>
-          <input class="form-control" type="text" v-model="dog.latitude">
-        </div>
-
-        <div class="form-group">
-          <label>Longitude: </label>
-          <input class="form-control" type="text" v-model="dog.longitude">
-        </div>
-
-        <div class="form-group">
+   <!--      <div class="form-group">
           <label>User Id: </label>
           <input class="form-control" type="text" v-model="dog.user_id">
         </div>
-
+ -->
         <div class="form-group">
           <label>Price: </label>
           <input class="form-control" type="number" v-model="dog.price">
@@ -84,13 +68,6 @@
           <input class="form-control" type="text" v-model="dog.zipcode">
         </div>
 
-        <label>Makeups</label>
-        <div v-for="makeup in makeups">
-          <div v-if="dog.id === makeup.dog_id">
-            <h1>{{makeup}}</h1>
-          </div>
-          
-        </div>
 
 
         <input class="btn btn-info" type="submit" value="Update">
@@ -128,23 +105,12 @@ export default {
         price: "",
         address: "",
         city: "",
-        zipcode: ""
-        // images: [
-        //         {
-        //           id: "",
-        //           image_url: ""
-        //         }
-        //         ]
+        zipcode: "",
+        breeds: []
       },
       errors: [],
       breeds: [],
-      breed: { 
-                id: "",
-                name: ""
-              },
       checkedIds: [],
-      makeups: [],
-      makeup: {}
     };
   },
   created: function() {
@@ -152,16 +118,12 @@ export default {
       .get("/api/dogs/" + this.$route.params.id)
       .then(response => {
         this.dog = response.data;
+        this.checkedIds = response.data.breeds.map(function(breedObject) { return breedObject.id });
       });
     axios
       .get("/api/breeds")
       .then(response => {
         this.breeds = response.data;
-      });
-    axios
-      .get("/api/makeups")
-      .then(response => {
-        this.makeups = response.data;
       });
   },
   methods: {
@@ -173,8 +135,6 @@ export default {
         bio: this.dog.bio,
         active_status: this.dog.active_status,
         size: this.dog.size,
-        latitude: this.dog.latitude,
-        longitude: this.dog.longitude,
         user_id: this.dog.user_id,
         price: this.dog.price,
         address: this.dog.address,
@@ -192,7 +152,7 @@ export default {
          this.errors = error.response.data.errors;
        });
     axios
-      .post("/api/makeups", clientParams)
+      .patch("/api/makeups" + this.$route.params.id, clientParams)
       .then(response => {
         this.$router.push("/");
       });

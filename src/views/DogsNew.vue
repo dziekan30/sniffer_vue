@@ -1,6 +1,6 @@
 <template>
   <div class="dogs-new">
-    <h1>New Page !</h1>
+    <h1>New Dog !</h1>
 
     <div class="row">
       <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="newDog()">
@@ -31,30 +31,20 @@
           <input class="form-control" type="text" v-model="bio">
         </div>
 
-        <div class="form-group">
+       <!--  <div class="form-group">
           <label>Active Status: </label>
           <input class="form-control" type="text" v-model="active_status">
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label>Size: </label>
           <input class="form-control" type="number" v-model="size">
         </div>
 
-        <div class="form-group">
-          <label>Latitude: </label>
-          <input class="form-control" type="number" v-model="latitude">
-        </div>
-
-        <div class="form-group">
-          <label>Longitude: </label>
-          <input class="form-control" type="number" v-model="longitude">
-        </div>
-
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label>User Id: </label>
           <input class="form-control" type="text" v-model="user_id">
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label>Price: </label>

@@ -1,9 +1,15 @@
 <template>
   <div class="requests-show">
+    <br>
+    <br>
+    <br>
     <h1>Id: {{ request.id }}</h1>
     <h1>User Id: {{ request.user_id }}</h1>
     <h1>Dog Id: {{ request.dog_id }}</h1>
     <h1>Approved: {{ request.approved }}</h1>
+    <br>
+    <br>
+    <br>
 
     <div v-if="$parent.userId == request.user_id"> 
       <button class="btn btn-info m-2" v-on:click="destroyRequest()">Delete</button>

@@ -4,6 +4,8 @@
     <div v-for="request in requests">
       <router-link v-bind:to="'/requests/' + request.id">
         <div v-if="$parent.userId == request.user_id">
+          <br>
+          <br>
           <h1>Id: {{request.id}}</h1>
           <h1>User Id: {{request.user_id}}</h1>
           <h1>Dog Id: {{request.dog_id}}</h1>

@@ -31,7 +31,6 @@ export default {
       .get("/api/requests")
       .then(response => {
         this.requests = response.data;
-        // console.log(response.data)
       });
   },
   methods: {}

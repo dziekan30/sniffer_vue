@@ -15,15 +15,15 @@
           <input class="form-control" type="text" v-model="request.id">
         </div>
 
-        <div class="form-group">
+      <!--   <div class="form-group">
           <label>User Id: </label>
           <input class="form-control" type="text" v-model="request.user_id">
-        </div>
+        </div> -->
 
-        <div class="form-group">
+       <!--  <div class="form-group">
           <label>Dog Id: </label>
           <input class="form-control" type="text" v-model="request.dog_id">
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label>Approved: </label>

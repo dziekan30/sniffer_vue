@@ -1,15 +1,20 @@
 <template>
   <div id="app">
 
-    <!-- START NAVBAR -->
-    <nav class="navbar navbar-expand-lg fixed-top custom_nav_menu sticky bg-dark">
+  
+  <!-- START NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top custom_nav_menu sticky">
         <div class="container">
             <!-- LOGO -->
-            <router-link class="navbar-brand logo" to="/">
+            <a class="navbar-brand logo" href="index.html">
+               <!--  <img src="images/logo-2.png" alt="" class="img-fluid logo-light">
+                <img src="images/logo-dark.png" alt="" class="img-fluid logo-dark"> -->
+            </a>
+            <!-- <router-link class="navbar-brand logo" to="/">
                 
                 <img src="/images/logo-2.png" alt="" class="img-fluid logo-light">
                 <img src="/images/logo-dark.png" alt="" class="img-fluid logo-dark">
-            </router-link>
+            </router-link> -->
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="mdi mdi-menu"></i>
@@ -64,6 +69,35 @@
     </nav>
     <!-- END NAVBAR -->
 
+  <!-- Home Section Start-->
+    <section class="bg_home_cover full_height_100vh_home" id="home">
+        <!-- <div class="bg_overlay_cover_on"></div> -->
+        <div class="home_table_cell">
+            <div class="home_table_cell_center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="">
+                                <h1 class="home_title text-white text-capitalize mb-0 pt-3">Sniffer / Adoption App</h1>
+
+                                <div class="home_text_details">
+                                    <p class="home_subtitle mt-4 mb-0">Make your home happier and lively with a pet</p>
+                                </div>
+
+                                <div class="home_btn_manage mt-4 pt-3">
+                                    <router-link to="/" class="btn btn_custom btn_rounded mr-3">Get Started</router-link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Home Section End-->
+
+
+ 
 
     <router-view/>
     <!-- START CTA -->
@@ -91,7 +125,7 @@
 </template>
 
 <style>
-#app {
+/*#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -110,7 +144,7 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
+}*/
 </style>
 
 <script>
@@ -137,8 +171,8 @@ export default {
     });
 
 
-  },
-  mounted: function() {
+  }
+  // mounted: function() {
 
     // $(window).on('scroll', function() {
     //     var scroll = $(window).scrollTop();
@@ -268,7 +302,7 @@ export default {
     //     }
     // });
     
-  }
+  // }
 }
 
 </script>
