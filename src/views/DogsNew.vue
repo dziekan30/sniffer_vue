@@ -61,13 +61,6 @@
           <input class="form-control" type="text" v-model="zipcode">
         </div>
 
-
-        <div class="form-group">
-          <div>
-            Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
-          </div>
-        </div>
-
         <input class="btn btn-info" type="submit" value="Create">
       </form>
     </div>
@@ -84,7 +77,6 @@ var axios = require("axios");
 export default {
   data: function() {
     return {
-      // dog: {
       name: "",
       breed_description: "",
       bio: "",
@@ -111,17 +103,7 @@ export default {
         this.breeds = response.data;
       });
   },
-  methods: {
-    setFile: function(event) {
-
-    var params = new FormData();
-    params.append ("file", this.image);
-
-      if (event.target.files.length > 0) {
-        this.image = event.target.files[0];
-      }
-      
-    },
+  methods: {},
     createDog: function() {
 
       var clientParams = {
@@ -153,8 +135,6 @@ export default {
       .then(response => {
         this.$router.push("/");
       });
-    
-    }
   }
 };
 </script>

@@ -69,13 +69,6 @@
       </form>
     </div>
 
-
-   <!--  <form v-for="image in dog.images" class="form-group" v-on:submit.prevent="updateImage(image)">
-      <label>Image URL: </label>
-      <input class="form-control" type="text" v-model="image.image_url">
-      <input class="btn btn-info" type="submit" value="Update">
-    </form> -->
-
   </div>
 </template>
 
@@ -152,21 +145,6 @@ export default {
         this.$router.push("/");
       });
     },
-
-    // updateImage: function(inputImage) {
-    //   var clientParams = {
-    //     id: inputImage.id,
-    //     image_url: inputImage.image_url
-    //   };
-    // axios
-    //    .patch("/api/images/" + this.$route.params.id, clientParams)
-    //    .then(response => {
-    //      this.$router.push("/dogs/" + this.$route.params.id);
-    //  }).catch(error => {
-    //      this.errors = error.response.data.errors;
-    //    });
-    // }
-
   }
 };
 </script>
