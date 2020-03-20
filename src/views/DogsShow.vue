@@ -15,8 +15,32 @@
       <h2 class="text-center">Address: {{ dog.address }}</h2>
       <h2 class="text-center">City: {{ dog.city }}</h2>
       <h2 class="text-center">Zip Code: {{ dog.zipcode }}</h2>
+
+      <div v-for="image in dog.images">
+        <img v-bind:src="image.url">
+      </div>
+      <br>
+      <br>
+      <br>
     </div>
  
+    <div class="text-center">
+      <form v-on:submit.prevent="createImage()">
+        <div>
+          Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
+        </div>
+        <input class="btn btn-info" type="submit" value="Create Image">
+      </form>
+    </div>
+
+    <!-- <div class="text-center">
+      <form v-on:submit.prevent="createImage()">
+        <div>
+          Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
+        </div>
+        <input class="btn btn-info" type="submit" value="Create Image">
+      </form>
+    </div> -->
 
     <div class="text-center" v-if="$parent.userId == dog.user_id"> 
       <router-link class="btn btn-info m-2" v-bind:to="'/dogs/' + dog.id + '/edit'">Edit</router-link>
@@ -69,12 +93,13 @@ export default {
         city: "",
         zipcode: "",
         requested: false,
-        breeds: []
+        breeds: [],
+        image: ""
       },
       requests: [],
       request: {},
       breeds: [],
-      seen: true
+      image: ""
     };
   },
   created: function() {
@@ -91,6 +116,28 @@ export default {
   },
   
   methods: {
+    setFile: function(event) {
+
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+    },
+    createImage: function() {
+
+    var params = new FormData();
+    params.append("file", this.image);
+    params.append("dog_id", this.dog.id);
+    console.log(params)
+
+      axios
+      .post("api/images", params)
+      .then(response => {
+        this.image = "";
+        this.$refs.fileInput.value = "";
+        // this.$router.push("/dogs/" + this.dog.id)
+      });
+     },
+
     destroyDog: function() {
       axios
         .delete("/api/dogs/" + this.$route.params.id)

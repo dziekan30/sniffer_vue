@@ -3,7 +3,7 @@
     <h1>New Dog !</h1>
 
     <div class="row">
-      <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="newDog()">
+      <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="createDog()">
         <h1 class="text-center mb-5">New Dog</h1>
 
         <ul>
@@ -16,12 +16,10 @@
         </div>
 
         <label>Breed: </label>
-      <!--   <div v-for="breed in breeds"> -->
             <ul>
           <li v-for="breed in breeds">
             <input type="checkbox" v-bind:value="breed.id" v-model="checkedIds" >
             <label for="checkbox">{{breed.name}}</label>
-<!--           </div> -->
         </li>
         <span>Checked id: {{ checkedIds }}</span>
             </ul>
@@ -40,11 +38,6 @@
           <label>Size: </label>
           <input class="form-control" type="number" v-model="size">
         </div>
-
-        <!-- <div class="form-group">
-          <label>User Id: </label>
-          <input class="form-control" type="text" v-model="user_id">
-        </div> -->
 
         <div class="form-group">
           <label>Price: </label>
@@ -69,11 +62,12 @@
         </div>
 
 
-<!--         <div class="form-group">
-          <label>Image: </label>
-          <input class="form-control" type="text" v-model="image">
+        <div class="form-group">
+          <div>
+            Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
+          </div>
         </div>
- -->
+
         <input class="btn btn-info" type="submit" value="Create">
       </form>
     </div>
@@ -96,25 +90,18 @@ export default {
       bio: "",
       active_status: "",
       size: "",
-      latitude: "",
-      longitude: "",
-      user_id: "",
       price: "",
       address: "",
       city: "",
       zipcode: "",
-
-      // },
-      // image: [{
-      //               image_url: ""
-      //             }],
       errors: [],
       breeds: [],
       breed: { 
                 id: "",
                 name: ""
               },
-      checkedIds: []
+      checkedIds: [],
+      image: ""
     };
   },
   created: function() {
@@ -125,7 +112,18 @@ export default {
       });
   },
   methods: {
-    newDog: function() {
+    setFile: function(event) {
+
+    var params = new FormData();
+    params.append ("file", this.image);
+
+      if (event.target.files.length > 0) {
+        this.image = event.target.files[0];
+      }
+      
+    },
+    createDog: function() {
+
       var clientParams = {
         id: this.id,
         name: this.name,
@@ -133,20 +131,19 @@ export default {
         bio: this.bio,
         active_status: this.active_status,
         size: this.size,
-        latitude: this.latitude,
-        longitude: this.longitude,
-        user_id: this.user_id,
         price: this.price,
         address: this.address,
         city: this.city,
         zipcode: this.zipcode,
         breed_ids: this.checkedIds
-        // image_url: this.image_url
          };
+
     axios
       .post("/api/dogs", clientParams)
       .then(response => {
         this.$router.push("/");
+        this.image = "";
+        this.$refs.fileInput.value = "";
       }).catch(error => {
         this.errors = error.response.data.errors;
         this.status = error.response.status;
@@ -156,6 +153,7 @@ export default {
       .then(response => {
         this.$router.push("/");
       });
+    
     }
   }
 };

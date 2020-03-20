@@ -40,12 +40,7 @@
           <label>Size: </label>
           <input class="form-control" type="text" v-model="dog.size">
         </div>
-
-   <!--      <div class="form-group">
-          <label>User Id: </label>
-          <input class="form-control" type="text" v-model="dog.user_id">
-        </div>
- -->
+        
         <div class="form-group">
           <label>Price: </label>
           <input class="form-control" type="number" v-model="dog.price">

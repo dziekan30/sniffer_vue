@@ -25,6 +25,11 @@
             <h3>Address: {{ dog.address }}</h3>
             <h3>City: {{ dog.city }}</h3>
             <h3>Zipcode: {{ dog.zipcode }}</h3>
+
+            <div v-for="image in dog.images">
+              <img v-bind:src="image.url">
+            </div>
+
             <br>
             <br>
           </div>
@@ -45,7 +50,8 @@ export default {
   data: function() {
     return {
       dogs: [],
-      nameFilter: ""
+      nameFilter: "",
+      image: ""
     };
   },
   created: function() {
@@ -63,7 +69,22 @@ export default {
         });
     }
   },
-  methods: {},
+  methods: {
+    // setFile: function(event) {
+    //       if (event.target.files.length > 0) {
+    //         this.image = event.target.files[0];
+    //       }
+    //       submit: function() {
+    //            var formData = new FormData();
+    //            formData.append("image", this.image);
+    //          }
+    //   axios
+    //     .post("http://localhost:3000/api/dogs", formData)
+    //     .then(response => {
+    //               this.$refs.fileInput.value = "";
+    //             });
+    //     }
+  },
   mixins: [Vue2Filters.mixin],
   beforeRouteUpdate (to, from, next) {
       if (to.query.breed) {
