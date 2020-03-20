@@ -35,9 +35,9 @@
                     <li class="nav-item">
                         <router-link  class="nav-link" to="/dogs">MyPage</router-link>
                     </li>
-                    <li class="nav-item">
+                   <!--  <li class="nav-item">
                         <router-link  class="nav-link" to="/requests">One Dog Request</router-link>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item">
                         <a  class="nav-link">Pricing</a>
                     </li> -->

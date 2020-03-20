@@ -1,6 +1,6 @@
 <template>
   <div class="requests-index">
-    <h1>All Requests !</h1>
+    <h1>All My Requests !</h1>
     <div v-for="request in requests">
       <router-link v-bind:to="'/requests/' + request.id">
         <div v-if="$parent.userId == request.user_id">
@@ -33,7 +33,6 @@ export default {
       .get("/api/requests")
       .then(response => {
         this.requests = response.data;
-        // console.log(response.data)
       });
   },
   methods: {}

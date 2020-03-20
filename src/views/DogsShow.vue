@@ -4,9 +4,9 @@
       <h2>Name: {{ dog.name }}</h2>
       <h2>Breed:</h2>
         <div v-for="breed in dog.breeds">
-            <li>
-              {{ breed.name }}
-            </li>
+          <li>
+            {{ breed.name }}
+          </li>
         </div>
       <h2 class="text-center">Bio: {{ dog.bio }}</h2>
       <h2 class="text-center">Available: {{ dog.active_status }}</h2>
@@ -20,10 +20,13 @@
         <img v-bind:src="image.url">
       </div>
       <br>
-      <br>
-      <br>
     </div>
  
+
+    <div class="text-center" v-if="$parent.userId == dog.user_id"> 
+      <router-link class="btn btn-info m-2" v-bind:to="'/dogs/' + dog.id + '/edit'">Edit</router-link>
+      <button class="btn btn-info m-2" v-on:click="destroyDog()">Delete</button>
+      <br>
     <div class="text-center">
       <form v-on:submit.prevent="createImage()">
         <div>
@@ -32,41 +35,28 @@
         <input class="btn btn-info" type="submit" value="Create Image">
       </form>
     </div>
-
-    <!-- <div class="text-center">
-      <form v-on:submit.prevent="createImage()">
-        <div>
-          Image: <input type="file" v-on:change="setFile($event)" ref="fileInput">
-        </div>
-        <input class="btn btn-info" type="submit" value="Create Image">
-      </form>
-    </div> -->
-
-    <div class="text-center" v-if="$parent.userId == dog.user_id"> 
-      <router-link class="btn btn-info m-2" v-bind:to="'/dogs/' + dog.id + '/edit'">Edit</router-link>
-      <button class="btn btn-info m-2" v-on:click="destroyDog()">Delete</button>
+      <div v-for=" image in dog.images">
+        <img  v-bind:src="image.file" v-bind:alt="dog.name">
+        <button class="btn btn-info" @click="destroyImage(image)">Delete Image</button>
+      </div>
       <br>
-      <div v-for="request in requests">
-        <div v-if="dog.id === request.dog_id">
+      <div v-for="request in dog.requests">
+        
           <h1>Request Id: {{request.id}}</h1>
           <h1>User Id: {{request.user_id}}</h1>
+          <h1>Name: {{ request.user.name }} - {{ request.approved ? "approved" : "not approved" }}</h1>
+          <h1>Phone Number: {{ request.user.phone_number }}</h1>
+          <h1>Phone Number: {{ request.user.email }}</h1>
           <br>
-      </div>
+          
     </div>
     </div>
+
     <div v-else>
       <div v-if="!dog.requested">
         <button class="btn btn-info m-2"  v-on:click="sendRequest()">Request Adoption</button>
       </div>
     </div>
-
- 
-  
-   <!--    <div v-for=" image in dog.images" class="col-md-6">
-        <img class="img-fluid w-100 mt-5" v-bind:src="image.image_url" v-bind:alt="dog.name">
-        <button @click="destroyImage(image)">destroy</button>
-    </div>
- -->
   </div>
 </template>
 
@@ -94,10 +84,9 @@ export default {
         zipcode: "",
         requested: false,
         breeds: [],
-        image: ""
+        image: "",
+        requests: []
       },
-      requests: [],
-      request: {},
       breeds: [],
       image: ""
     };
@@ -107,11 +96,6 @@ export default {
       .get("/api/dogs/" + this.$route.params.id)
       .then(response => {
         this.dog = response.data;
-      axios.get("/api/requests")
-      .then(response => {
-        this.requests = response.data;
-        console.log(response.data);
-        });
       });
   },
   
@@ -134,7 +118,11 @@ export default {
       .then(response => {
         this.image = "";
         this.$refs.fileInput.value = "";
-        // this.$router.push("/dogs/" + this.dog.id)
+        axios
+          .get("/api/dogs/" + this.$route.params.id)
+          .then(response => {
+            this.dog = response.data;
+          });
       });
      },
 
@@ -162,17 +150,17 @@ export default {
     },
     showRequest: function() {
       this.$router.push("/requests")
+    },
+
+    destroyImage: function(inputImage) {
+      axios
+        .delete("/api/images/" + inputImage.id)
+        .then(response => {
+          var index = this.dog.images.indexOf(inputImage);
+          this.dog.images.splice(index, 1)
+
+        });
     }
-
-    // destroyImage: function(inputImage) {
-    //   axios
-    //     .delete("/api/images/" + inputImage.id)
-    //     .then(response => {
-    //       var index = this.dog.images.indexOf(inputImage);
-    //       this.dog.images.splice(index, 1)
-
-    //     });
-    // }
   }
 };
 </script>

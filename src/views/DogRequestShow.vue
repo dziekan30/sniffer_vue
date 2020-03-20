@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="requests-index">
     <h1>One Dog Requests !</h1>
     <div v-for="request in requests">
@@ -35,4 +35,4 @@ export default {
   },
   methods: {}
 };
-</script>
+</script> -->

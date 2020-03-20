@@ -2,14 +2,10 @@
   <div class="home">
     <br>
     <br>
-    <br>
     <h1>Welcome to Sniffer!!!</h1>
 
-    <div v-for="dog in dogs">
+    <div  class="text-center" v-for="dog in dogs">
       <router-link v-bind:to="'/dogs/' + dog.id">
-        <!-- <div v-for="image in dog.images">  
-          <img v-bind:src="image.image_url" v-bind:alt="dog.name">
-        </div> -->
           <div>
             <h3>Name: {{ dog.name }}</h3>
             <h3>Breed:</h3>
@@ -69,22 +65,7 @@ export default {
         });
     }
   },
-  methods: {
-    // setFile: function(event) {
-    //       if (event.target.files.length > 0) {
-    //         this.image = event.target.files[0];
-    //       }
-    //       submit: function() {
-    //            var formData = new FormData();
-    //            formData.append("image", this.image);
-    //          }
-    //   axios
-    //     .post("http://localhost:3000/api/dogs", formData)
-    //     .then(response => {
-    //               this.$refs.fileInput.value = "";
-    //             });
-    //     }
-  },
+  methods: {},
   mixins: [Vue2Filters.mixin],
   beforeRouteUpdate (to, from, next) {
       if (to.query.breed) {

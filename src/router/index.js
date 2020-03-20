@@ -16,7 +16,7 @@ import RequestsShow from '../views/RequestsShow.vue';
 import RequestsEdit from '../views/RequestsEdit.vue';
 
 import MyPage from '../views/MyPage.vue';
-import DogRequestShow from '../views/DogRequestShow.vue';
+// import DogRequestShow from '../views/DogRequestShow.vue';
 
 
 Vue.use(VueRouter)
@@ -36,8 +36,8 @@ const routes = [
   { path: '/requests/:id', name: 'requests-show', component: RequestsShow },
   { path: '/requests/:id/edit', name: 'requests-edit', component: RequestsEdit },
 
-  { path: '/dogs', name: 'dogs-home', component: MyPage },
-  { path: '/requests', name: 'dogs-requests-show', component: DogRequestShow }
+  { path: '/dogs', name: 'dogs-home', component: MyPage }
+  // { path: '/requests', name: 'dogs-requests-show', component: DogRequestShow }
 
 
 
