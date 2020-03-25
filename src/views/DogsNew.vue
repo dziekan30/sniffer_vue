@@ -11,7 +11,7 @@
                           <br>
                             <i class="mbri-contact-form"></i>
                         </div>
-                        <h3 class="mt-3">Create Profile fo a <span class="text_custom">Dog </span></h3>
+                        <h3 class="mt-3">Create Profile for a <span class="text_custom">Dog </span></h3>
                   </div>
                 </div>
             </div>
@@ -142,16 +142,9 @@ export default {
       .post("/api/dogs", clientParams)
       .then(response => {
         this.$router.push("/");
-        this.image = "";
-        this.$refs.fileInput.value = "";
       }).catch(error => {
         this.errors = error.response.data.errors;
         this.status = error.response.status;
-      });
-    axios
-      .post("/api/makeups", clientParams)
-      .then(response => {
-        this.$router.push("/");
       });
   },
   }

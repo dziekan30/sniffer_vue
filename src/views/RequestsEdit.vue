@@ -1,45 +1,66 @@
 <template>
   <div class="requests-edit">
 
-    <br>
-    <br>
-    <br>
-    <br>
-  
+    <!-- Contact Us Start -->
+    <section class="section_all" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                  <br>
+                    <div class="section_title_all text-center">
+                        <div class="section_icons">
+                            <i class="mbri-contact-form"></i>
+                        </div>
+                        <h3 class="mt-3">Request <span class="text_custom"> Edit</span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 vertical_content_manage">
+                <div class="col-lg-5">
+                   <div class="description_img mt-3">
+                       <img src="https://media2.giphy.com/media/3kuSo744UIPJjcJUEn/giphy.webp?cid=790b76111704464bfcf34fba411cd14f0f17989ce98bc145&rid=giphy.webp" alt="" class="dog-pict img-fluid mx-auto d-block">
+                   </div>
+               </div>
 
-    <div class="row">
-      <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="updateRequest()">
-        <h1 class="text-center mb-5">Edit Request</h1>
-
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-
-        <div class="form-group">
-          <label>Id: </label>
-      
-          <p class="form-control">{{request.id}}</p>
+                <div class="col-lg-7">
+                    <div class="business_form_custom mt-3">
+                        <form v-on:submit.prevent="updateRequest()">
+                          <ul>
+                            <li class="text-danger" v-for="error in errors">{{ error }}</li>
+                          </ul>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                      <h5 class="text_custom">Dog:</h5>
+                                        <p class="form-control">{{request.dog.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                      <h5 class="text_custom">For:</h5>
+                                        <p class="form-control"> {{request.user.name}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                      <h5 class="text_custom">Approved:</h5>
+                                        <input class="form-control" type="text" v-model="request.approved" required="">
+                                    </div>
+                                </div>
+                            
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input class="btn btn_custom btn_rounded mr-3" type="submit" value="Update">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-      <!--   <div class="form-group">
-          <label>User Id: </label>
-          <input class="form-control" type="text" v-model="request.user_id">
-        </div> -->
-
-       <!--  <div class="form-group">
-          <label>Dog Id: </label>
-          <input class="form-control" type="text" v-model="request.dog_id">
-        </div> -->
-
-        <div class="form-group">
-          <label>Approved: </label>
-          <input class="form-control" type="text" v-model="request.approved">
-        </div>
-
-        <input class="btn btn_custom btn_rounded mr-3" type="submit" value="Update">
-
-      </form>
-    </div>
+    </section>
+    <!-- Contact Us End -->
 
   </div>
 </template>
@@ -54,10 +75,12 @@ export default {
   data: function() {
     return {
       request: {
+        dog: [],
         id: "",
         user_id: "",
         dog_id: "",
-        approved: ""
+        approved: "",
+        user: []
       },
       errors: []
       
@@ -79,7 +102,7 @@ export default {
     axios
       .patch("/api/requests/" + this.$route.params.id, clientParams)
       .then(response => {
-         this.$router.push("/requests/" + this.$route.params.id);
+         this.$router.push("/dogs/");
       }).catch(error => {
         this.errors = error.response.data.errors;
       });

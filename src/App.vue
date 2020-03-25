@@ -19,33 +19,22 @@
                         <router-link class="nav-link" to="/">Home</router-link>
                     </li>
                     <li class="nav-item">
-                        <!-- <a  class="nav-link">Services</a> -->
                         <router-link class="nav-link" to="/dogs/new">New</router-link>
                     </li>
                     <li class="nav-item">
-                        <!-- <a  class="nav-link">Portfolio</a> -->
                         <router-link class="nav-link" to="/requests">Requests</router-link>
                     </li>
                     <li class="nav-item">
                         <router-link  class="nav-link" to="/dogs">MyPage</router-link>
                     </li>
-                   <!--  <li class="nav-item">
-                        <router-link  class="nav-link" to="/requests">One Dog Request</router-link>
-                    </li> -->
-                    <!-- <li class="nav-item">
-                        <a  class="nav-link">Pricing</a>
-                    </li> -->
+                   
                     <li class="nav-item">
-                        <!-- <a  class="nav-link">Blog</a> -->
                         <router-link class="nav-link" to="/signup">Signup</router-link>
                     </li>
                     <li class="nav-item">
-                        <!-- <a  class="nav-link">Contact</a> -->
                         <router-link class="nav-link" to="/login">Log In</router-link>
                     </li>
                 </ul>
-
-                <!-- <button class="btn_custom btn btn_small text-capitalize  navbar-btn mr-3">Log In</button> -->
                     <router-link class="btn_custom btn btn_small text-capitalize  navbar-btn mr-3" to="/logout">Logout</router-link>
             </div>
 
@@ -58,7 +47,7 @@
           </datalist>
 
 
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Display</button>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
     <!-- END NAVBAR -->
@@ -137,25 +126,6 @@
 </section>
 <!-- Footer End -->
 
-
-<!-- Start Cta -->
-   <!--  <section class="section_all bg_cta_business_img">
-        <div class="bg_overlay_cover_on"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="text-center text-white">
-                        <h2 class="">“A dog is the only thing on earth that loves you more than you love yourself.” – Josh Billings</h2>
-                       <div class="mt-4 pt-3">
-                        <a href="/#" class="btn btn_custom btn-rounded font-weight-bold"><i class="mdi mdi-phone"></i> Call (312-468-....)</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-    <!-- End Cta -->
-
   </div>
 </template>
 
@@ -163,6 +133,20 @@
 .dog-pict {
   height: 325px;
   width: 400px;
+  margin: 10px;
+}
+.text-color {
+  color: black;
+}
+.text-display {
+  color: red;
+}
+.text-font {
+font-weight: bold;
+}
+.show-dog {
+  height: 487.5px;
+  width: 600px;
   margin: 10px;
 }
 .bg_overlay_cover_o {
@@ -217,140 +201,7 @@ export default {
     .then(response => {
       this.breeds = response.data;
     });
-
-
   }
-  // mounted: function() {
-
-    // $(window).on('scroll', function() {
-    //     var scroll = $(window).scrollTop();
-
-    //     if (scroll >= 50) {
-    //         $(".sticky").addClass("stickyadd");
-    //     } else {
-    //         $(".sticky").removeClass("stickyadd");
-    //     }
-    // });
-    
-
-    // $('.navbar-nav a, .scroll_down a').on('click', function(event) {
-    //     var $anchor = $(this);
-    //     $('html, body').stop().animate({
-    //         scrollTop: $($anchor.attr('href')).offset().top - 0
-    //     }, 1500, 'easeInOutExpo');
-    //     event.preventDefault();
-    // });
-    
-
-    // $("#navbarCollapse").scrollspy({
-    //     offset: 20
-    // });
-    
-
-    
-    //   $("#owl-demo").owlCarousel({
-    //     autoPlay: 3000,
-    //     stopOnHover: true,
-    //     navigation: false,
-    //     paginationSpeed: 1000,
-    //     goToFirstSpeed: 2000,
-    //     singleItem: true,
-    //     autoHeight: true,
-    // });
-
-    // $(document).ready(function() {
-    //     $("#app_testi").owlCarousel({
-    //         autoPlay: 28000,
-    //         items: 3,
-    //         itemsDesktop: [1199, 3],
-    //         itemsDesktopSmall: [979, 3]
-    //     });
-    // });
-    
-
-    
-    // $('.img-zoom').magnificPopup({
-    //     type: 'image',
-    //     closeOnContentClick: true,
-    //     mainClass: 'mfp-fade',
-    //     gallery: {
-    //         enabled: true,
-    //         navigateByImgClick: true,
-    //         preload: [0, 1]
-    //     }
-    // });
-
-    // $('.features_video').magnificPopup({
-    //     disableOn: 700,
-    //     type: 'iframe',
-    //     mainClass: 'mfp-fade',
-    //     removalDelay: 160,
-    //     preloader: false,
-    //     fixedContentPos: false
-    // });
-    
-
-    
-    // $(window).on('load', function() {
-    //     var $container = $('.work-filter');
-    //     var $filter = $('#menu-filter');
-    //     $container.isotope({
-    //         filter: '*',
-    //         layoutMode: 'masonry',
-    //         animationOptions: {
-    //             duration: 750,
-    //             easing: 'linear'
-    //         }
-    //     });
-
-    //     $filter.find('a').on("click", function() {
-    //         var selector = $(this).attr('data-filter');
-    //         $filter.find('a').removeClass('active');
-    //         $(this).addClass('active');
-    //         $container.isotope({
-    //             filter: selector,
-    //             animationOptions: {
-    //                 animationDuration: 750,
-    //                 easing: 'linear',
-    //                 queue: false,
-    //             }
-    //         });
-    //         return false;
-    //     });
-    // });
-    
-
-    // May replace logic with Vue.js logic to make opaque until scroll down
-
-    // var a = 0;
-    // $(window).on('scroll', function() {
-    //     var oTop = $('#counter').offset().top - window.innerHeight;
-    //     if (a == 0 && $(window).scrollTop() > oTop) {
-    //         $('.counter_value').each(function() {
-    //             var $this = $(this),
-    //                 countTo = $this.attr('data-count');
-    //             $({
-    //                 countNum: $this.text()
-    //             }).animate({
-    //                 countNum: countTo
-    //             }, {
-    //                 duration: 2000,
-    //                 easing: 'swing',
-    //                 step: function() {
-    //                     $this.text(Math.floor(this.countNum));
-    //                 },
-    //                 complete: function() {
-    //                     $this.text(this.countNum);
-    //                     //alert('finished');
-    //                 }
-
-    //             });
-    //         });
-    //         a = 1;
-    //     }
-    // });
-    
-  // }
 }
 
 </script>

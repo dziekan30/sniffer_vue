@@ -11,13 +11,10 @@ import DogsShow from '../views/DogsShow.vue';
 import DogsEdit from '../views/DogsEdit.vue';
 
 import RequestsIndex from '../views/RequestsIndex.vue';
-// import RequestsNew from '../views/RequestsNew.vue';
 import RequestsShow from '../views/RequestsShow.vue';
 import RequestsEdit from '../views/RequestsEdit.vue';
 
 import MyPage from '../views/MyPage.vue';
-// import DogRequestShow from '../views/DogRequestShow.vue';
-
 
 Vue.use(VueRouter)
 
@@ -32,24 +29,20 @@ const routes = [
   { path: '/dogs/:id/edit', name: 'dogs-edit', component: DogsEdit },
 
   { path: '/requests', name: 'requests-index', component: RequestsIndex },
-  // { path: '/requests/new', name: 'requests-new', component: RequestsNew },
   { path: '/requests/:id', name: 'requests-show', component: RequestsShow },
   { path: '/requests/:id/edit', name: 'requests-edit', component: RequestsEdit },
 
   { path: '/dogs', name: 'dogs-home', component: MyPage }
-  // { path: '/requests', name: 'dogs-requests-show', component: DogRequestShow }
-
-
-
-
-
 
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 
 export default router

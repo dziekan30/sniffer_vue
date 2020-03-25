@@ -7,9 +7,7 @@
               <div class="row vertical_content_manage">
                   <div class="col-lg-6">
                       <div class="description_header_main mt-3">
-                          <h1 class="display-4">Name: {{ dog.name }}</h1>
-                          
-                          
+                          <h1 class="display-4 text-font">Name: {{ dog.name }}</h1>
 
                           <div class="business_choose_box p-3 mt-3">
                             <h3 class="text_custom">Breed:</h3>
@@ -28,7 +26,7 @@
                           <div class="business_choose_box p-3 mt-3">
                              <h3 class="text_custom">Available:</h3>
                               <div class="business_choose_details mt-2">
-                                  <h6 class="text-capitalize mb-0">{{ dog.active_status }}</h6>
+                                  <h6 class="text-capitalize mb-0">{{ dog.active_status ? "Yes" : "Found a forever home" }}</h6>
                               </div>
                           </div>
 
@@ -60,7 +58,6 @@
                             <div class="business_choose_details mt-2">
                               <div v-for="request in dog.requests">
                                   <h5>Request Id: {{request.id}}</h5>
-                                  <!-- <h5>User Id: {{request.user_id}}</h5> -->
                                   <h5>Name: {{ request.user.name }} - {{ request.approved ? "approved" : "not approved" }}</h5>
                                   <h5>Phone Number: {{ request.user.phone_number }}</h5>
                                   <h5>Email: {{ request.user.email }}</h5>
@@ -75,7 +72,7 @@
                   </div>
                   <div class="col-lg-6">
                       <div class="description_img mt-3" v-for="image in dog.images">
-                          <img v-bind:src="image.url" class="img-fluid mx-auto d-block">
+                          <img v-bind:src="image.url" class="show-dog img-fluid mx-auto d-block">
                       </div>
                   </div>
 
@@ -117,8 +114,6 @@
 </template>
 
 <style>
-
-
 
 
 </style>
