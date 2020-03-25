@@ -1,6 +1,9 @@
 <template>
   <div class="dogs-edit">
-    <h1>Edit Page !</h1>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <div class="row">
       <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="updateDog()">
@@ -65,7 +68,7 @@
 
 
 
-        <input class="btn btn-info" type="submit" value="Update">
+        <input class="btn btn_custom btn_rounded mr-3" type="submit" value="Update">
       </form>
     </div>
 

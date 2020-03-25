@@ -1,69 +1,86 @@
 <template>
   <div class="dogs-new">
-    <h1>New Dog !</h1>
 
-    <div class="row">
-      <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="createDog()">
-        <h1 class="text-center mb-5">New Dog</h1>
+    <!-- Contact Us Start -->
+    <section class="section_all" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title_all text-center">
+                        <div class="section_icons">
+                          <br>
+                            <i class="mbri-contact-form"></i>
+                        </div>
+                        <h3 class="mt-3">Create Profile fo a <span class="text_custom">Dog </span></h3>
+                  </div>
+                </div>
+            </div>
+            <div class="row mt-5 vertical_content_manage">
+                <div class="col-lg-5">
+                    <div class="contact_info_box mt-3 bg-light p-5">
+                        <div class="">
+                            <h5 class="text_customt">Breed Description </h5>
+                              <div class="custom-control custom-checkbox" v-for="(breed, index) in breeds">
+                                <input type="checkbox" class="custom-control-input" :id="'customCheck' + index" v-bind:value="breed.id" v-model="checkedIds">
+                                <label class="custom-control-label" :for="'customCheck' + index">{{breed.name}}</label>
+                              </div>
+                        </div>
+                    </div>
+                </div>
 
-        <ul>
-          <li class="text-danger" v-for="error in errors">{{ error }}</li>
-        </ul>
-
-        <div class="form-group">
-          <label>Name: </label>
-          <input class="form-control" type="text" v-model="name">
+                <div class="col-lg-7">
+                    <div class="business_form_custom mt-3">
+                        <form v-on:submit.prevent="createDog()">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="text" v-model="name" placeholder="Dog name..." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="text" v-model="bio" placeholder="Dog Bio..." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="text" v-model="size" placeholder="Dog Size (teacup, small, medium, large)" required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="number" v-model="price" placeholder="Dog price.." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="text" v-model="address" placeholder="Address.." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="text" v-model="city" placeholder="City and State.." required="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-3">
+                                        <input class="form-control" type="text" v-model="zipcode" placeholder="Zipcode.." required="">
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input class="btn btn_custom btn_rounded mr-3" type="submit" value="Create">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <label>Breed: </label>
-            <ul>
-          <li v-for="breed in breeds">
-            <input type="checkbox" v-bind:value="breed.id" v-model="checkedIds" >
-            <label for="checkbox">{{breed.name}}</label>
-        </li>
-        <span>Checked id: {{ checkedIds }}</span>
-            </ul>
-
-        <div class="form-group">
-          <label>Bio: </label>
-          <input class="form-control" type="text" v-model="bio">
-        </div>
-
-       <!--  <div class="form-group">
-          <label>Active Status: </label>
-          <input class="form-control" type="text" v-model="active_status">
-        </div> -->
-
-        <div class="form-group">
-          <label>Size: </label>
-          <input class="form-control" type="number" v-model="size">
-        </div>
-
-        <div class="form-group">
-          <label>Price: </label>
-          <input class="form-control" type="number" v-model="price">
-        </div>
-
-        <div class="form-group">
-          <label>Address: </label>
-          <input class="form-control" type="text" v-model="address">
-        </div>
-
-
-        <div class="form-group">
-          <label>City: </label>
-          <input class="form-control" type="text" v-model="city">
-        </div>
-
-
-        <div class="form-group">
-          <label>Zipcode: </label>
-          <input class="form-control" type="text" v-model="zipcode">
-        </div>
-
-        <input class="btn btn-info" type="submit" value="Create">
-      </form>
-    </div>
+    </section>
+    <!-- Contact Us End -->
 
   </div>
 </template>
@@ -103,7 +120,8 @@ export default {
         this.breeds = response.data;
       });
   },
-  methods: {},
+  methods: {
+
     createDog: function() {
 
       var clientParams = {
@@ -135,6 +153,7 @@ export default {
       .then(response => {
         this.$router.push("/");
       });
+  },
   }
 };
 </script>

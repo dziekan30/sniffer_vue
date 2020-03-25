@@ -1,37 +1,72 @@
 <template>
   <div class="home">
-    <br>
-    <br>
-    <h1>Welcome to Sniffer!!!</h1>
 
-    <div  class="text-center" v-for="dog in dogs">
-      <router-link v-bind:to="'/dogs/' + dog.id">
-          <div>
-            <h3>Name: {{ dog.name }}</h3>
-            <h3>Breed:</h3>
-            <div v-for="breed in dog.breeds">
-                <li>
-                  {{ breed.name }}
-                </li>
-            </div>
-            <h3>Bio: {{ dog.bio }}</h3>
-            <h3>Available: {{ dog.active_status }}</h3>
-            <h3>Size: {{ dog.size }}</h3>
-            <h3>Price: {{ dog.price }}</h3>
-            <h3>Address: {{ dog.address }}</h3>
-            <h3>City: {{ dog.city }}</h3>
-            <h3>Zipcode: {{ dog.zipcode }}</h3>
+    <!-- Home Section Start-->
+      <section class="bg_home_cover full_height_100vh_home" id="home">
+          <!-- <div class="bg_overlay_cover_on"></div> -->
+          <div class="home_table_cell">
+              <div class="home_table_cell_center">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-12">
+                              <div class="">
+                                  <h1 class="home_title text-white text-capitalize mb-0 pt-3">Sniffer / Adoption App</h1>
 
-            <div v-for="image in dog.images">
-              <img v-bind:src="image.url">
-            </div>
+                                  <div class="home_text_details">
+                                      <p class="home_subtitle mt-4 mb-0">Make your home happier and lively with a pet</p>
+                                  </div>
 
-            <br>
-            <br>
+                                  <!-- <div class="home_btn_manage mt-4 pt-3">
+                                      <router-link to="/" class="btn btn_custom btn_rounded mr-3">Get Started</router-link>
+                                  </div> -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-      </router-link>
-    </div>
-<!--     <h2>{{dogs}}</h2> -->
+      </section>
+    <!-- Home Section End-->
+
+      <!-- Our Portflio Start -->
+      <section class="section_all text-center" id="portfolio">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="section_title_all text-center">
+                          <div class="section_icons">
+                              <!-- <i class="mbri-extension"></i> -->
+                          </div>
+                          <h3 class="mt-3">Our Awesome <span class="text_custom"> Dogs </span></h3>
+                          <!-- <p class="section_subtitle mx-auto text-muted"></p> -->
+                      </div>
+                  </div>
+              </div>
+
+
+              <!-- problem below -->
+              <div class="row">
+
+                <div class="col-lg-4 " v-for="dog in dogs">
+                      <router-link class="img-zoom" v-bind:to="'/dogs/' + dog.id">
+                        <div class="work_box">
+                            <img v-bind:src="dog.default_image_url" class="dog-pict kd mx-auto d-block rounded">
+                            <div class="work_detail">
+                                <h4 class="mb-0">{{ dog.name }}</h4>
+                                <p class="mb-0">{{ dog.bio }}</p>
+                            </div>
+                        </div>
+                    </router-link>
+                </div>
+              </div>
+
+              <!-- problem above -->
+
+
+           </div>
+      </section>
+      <!-- Our Portfolio End  -->
+     
   </div>
 </template>
 

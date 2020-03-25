@@ -1,6 +1,11 @@
 <template>
   <div class="requests-edit">
-    <h1>Edit Requests!</h1>
+
+    <br>
+    <br>
+    <br>
+    <br>
+  
 
     <div class="row">
       <form class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1" v-on:submit.prevent="updateRequest()">
@@ -12,7 +17,8 @@
 
         <div class="form-group">
           <label>Id: </label>
-          <input class="form-control" type="text" v-model="request.id">
+      
+          <p class="form-control">{{request.id}}</p>
         </div>
 
       <!--   <div class="form-group">
@@ -30,7 +36,7 @@
           <input class="form-control" type="text" v-model="request.approved">
         </div>
 
-        <input class="btn btn-info" type="submit" value="Update">
+        <input class="btn btn_custom btn_rounded mr-3" type="submit" value="Update">
 
       </form>
     </div>
@@ -50,7 +56,8 @@ export default {
       request: {
         id: "",
         user_id: "",
-        dog_id: ""
+        dog_id: "",
+        approved: ""
       },
       errors: []
       
@@ -66,7 +73,8 @@ export default {
   methods: {
     updateRequest: function() {
       var clientParams = {
-        dog_id: this.dog_id
+        dog_id: this.request.dog_id,
+        approved: this.request.approved
       };
     axios
       .patch("/api/requests/" + this.$route.params.id, clientParams)

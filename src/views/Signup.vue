@@ -7,6 +7,9 @@
           <li class="text-danger" v-for="error in errors">{{ error }}</li>
         </ul>
         <div class="form-group">
+          <br>
+          <br>
+          <br>
           <label>Name:</label> 
           <input type="text" class="form-control" v-model="name">
         </div>
@@ -26,7 +29,7 @@
           <label>Password confirmation:</label>
           <input type="password" class="form-control" v-model="passwordConfirmation">
         </div>
-        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="submit" class="btn btn_custom btn_rounded mr-3" value="Submit">
       </form>
     </div>
   </div>
