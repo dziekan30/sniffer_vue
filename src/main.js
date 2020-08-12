@@ -15,7 +15,6 @@ if (jwt) {
 }
 
 
-
 Vue.config.productionTip = false
 
 new Vue({
