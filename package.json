@@ -17,9 +17,13 @@
     "vue2-filters": "^0.10.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
     "@vue/cli-plugin-babel": "~4.2.0",
     "@vue/cli-plugin-router": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
-    "vue-template-compiler": "^2.6.11"
+    "babel-loader": "^8.1.0",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.44.1"
   }
 }

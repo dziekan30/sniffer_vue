@@ -76,7 +76,7 @@ export default {
   created: function() {
     if (this.$route.query.breed) {
       axios
-        .get("/api/dogs?breed=" + this.$route.query.breed)
+        // .get("/api/dogs?breed=" + this.$//.query.breed)
         .then(response => {
           this.dogs = response.data;
         });
