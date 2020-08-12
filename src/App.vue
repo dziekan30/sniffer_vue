@@ -36,6 +36,10 @@
                     </li>
                 </ul>
                     <router-link class="btn_custom btn btn_small text-capitalize  navbar-btn mr-3" to="/logout">Logout</router-link>
+
+                <ul v-if="userEmail" class="navbar-nav ml-auto mr-4">
+                  <li class="nav-item text-light">Welcome, {{ userEmail }}</li>
+                </ul>
             </div>
 
         </div>
@@ -186,6 +190,7 @@ export default {
   data: function() {
     return {
       userId: "",
+      userEmail: "",
       breedFilter: "",
       dogs: [],
       breeds: []
@@ -200,6 +205,15 @@ export default {
     .get("/api/breeds")
     .then(response => {
       this.breeds = response.data;
+    });
+    var email = localStorage.getItem("userEmail");
+    if (email) {
+      this.userEmail = email;
+    }
+  axios
+    .get("/api/recipes")
+    .then(response => {
+      this.recipes = response.data;
     });
   }
 }
