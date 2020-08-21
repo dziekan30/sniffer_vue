@@ -57,6 +57,7 @@
     <!-- END NAVBAR -->
 
     <router-view/>
+    
 
 
 <!-- Footer Start -->
@@ -210,11 +211,11 @@ export default {
     if (email) {
       this.userEmail = email;
     }
-  axios
-    .get("/api/recipes")
-    .then(response => {
-      this.recipes = response.data;
-    });
+  // axios
+  //   .get("/api/recipes")
+  //   .then(response => {
+  //     this.recipes = response.data;
+  //   });
   }
 }
 

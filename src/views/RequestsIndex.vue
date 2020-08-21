@@ -59,7 +59,7 @@
               </div>
               <div class="col-lg-6">
                   <div class="description_img mt-3">
-                      <img v-bind:src="request.dog.default_image_url" alt="" class="dog_pict img-fluid mx-auto d-block">
+                      <img v-bind:src=" request.dog ? request.dog.default_image_url : '#' "  alt="" class="dog_pict img-fluid mx-auto d-block">
                   </div>
               </div>
           </div>
