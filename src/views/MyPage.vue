@@ -90,7 +90,7 @@
                 <div class="col-lg-6">
                     <div class="description_img mt-3" >
                       <router-link class="img-zoom" v-bind:to="'/dogs/' + dog.id">
-                        <img v-bind:src="dog.default_image_url" alt="/dog_profile.png" class="show-dog img-fluid mx-auto d-block">
+                        <img v-bind:src="dog.default_image_url ? dog.default_image_url : "#" " alt="/dog_profile.png" class="show-dog img-fluid mx-auto d-block">
                       </router-link>
                     </div>
                 </div>

@@ -41,7 +41,7 @@
                 <div class="col-lg-4 " v-for="dog in dogs">
                       <router-link class="img-zoom" v-bind:to="'/dogs/' + dog.id">
                         <div class="work_box">
-                            <img v-bind:src="dog.default_image_url" class="dog-pict kd mx-auto d-block rounded">
+                            <img v-bind:src="dog.default_image_url ? dog.default_image_url : "#" " class="dog-pict kd mx-auto d-block rounded">
                             <div class="work_detail">
                                 <h2 class="mb-0 text-display">{{ dog.name }}</h2>
                                 <p class="mb-0 text-display">{{ dog.bio }}</p>
@@ -58,52 +58,43 @@
 </template>
 
 <style>
-
 </style>
 
 <script>
 var axios = require("axios");
-import Vue2Filters from 'vue2-filters';
+import Vue2Filters from "vue2-filters";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       dogs: [],
       nameFilter: "",
-      image: ""
+      image: "",
     };
   },
-  created: function() {
+  created: function () {
     if (this.$route.query.breed) {
-      axios
-        .get("/api/dogs?breed=" + this.$.query.breed)
-        .then(response => {
-          this.dogs = response.data;
-        });
+      axios.get("/api/dogs?breed=" + this.$.query.breed).then((response) => {
+        this.dogs = response.data;
+      });
     } else {
-      axios
-        .get("/api/dogs")
-        .then(response => {
-          this.dogs = response.data;
-        });
+      axios.get("/api/dogs").then((response) => {
+        this.dogs = response.data;
+      });
     }
   },
   methods: {},
   mixins: [Vue2Filters.mixin],
-  beforeRouteUpdate (to, from, next) {
-      if (to.query.breed) {
-        axios
-          .get("/api/dogs?breed=" + to.query.breed)
-          .then(response => {
-            this.dogs = response.data;
-          });
-      } else {
-        axios
-          .get("/api/dogs")
-          .then(response => {
-            this.dogs = response.data;
-          });
-      }
-  }
+  beforeRouteUpdate(to, from, next) {
+    if (to.query.breed) {
+      axios.get("/api/dogs?breed=" + to.query.breed).then((response) => {
+        this.dogs = response.data;
+      });
+    } else {
+      axios.get("/api/dogs").then((response) => {
+        this.dogs = response.data;
+      });
+    }
+  },
 };
 </script>
