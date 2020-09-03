@@ -90,7 +90,7 @@
                 <div class="col-lg-6">
                     <div class="description_img mt-3" >
                       <router-link class="img-zoom" v-bind:to="'/dogs/' + dog.id">
-                        <img v-bind:src="dog.default_image_url ? dog.default_image_url : "#" " alt="/dog_profile.png" class="show-dog img-fluid mx-auto d-block">
+                        <img v-bind:src="dog.default_image_url ? dog.default_image_url : '#' " alt="/dog_profile.png" class="show-dog img-fluid mx-auto d-block">
                       </router-link>
                     </div>
                 </div>
@@ -107,30 +107,27 @@
 </style>
 
 <script>
-  var axios = require("axios");
-  import Vue2Filters from 'vue2-filters';
+var axios = require("axios");
+import Vue2Filters from "vue2-filters";
 
 export default {
-  data: function() {
+  data: function () {
     return {
       dogs: [],
       requests: [],
-      nameFilter: ""
+      nameFilter: "",
     };
   },
-  created: function() {
-    axios
-      .get("/api/dogs")
-      .then(response => {
-        this.dogs = response.data;
-        axios.get("/api/requests")
-        .then(response => {
-          this.requests = response.data;
-          console.log(response.data);
-        });
+  created: function () {
+    axios.get("/api/dogs").then((response) => {
+      this.dogs = response.data;
+      axios.get("/api/requests").then((response) => {
+        this.requests = response.data;
+        console.log(response.data);
       });
+    });
   },
   methods: {},
-  mixins: [Vue2Filters.mixin]
+  mixins: [Vue2Filters.mixin],
 };
 </script>
