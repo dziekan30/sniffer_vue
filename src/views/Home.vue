@@ -41,7 +41,7 @@
                 <div class="col-lg-4 " v-for="dog in dogs">
                       <router-link class="img-zoom" v-bind:to="'/dogs/' + dog.id">
                         <div class="work_box">
-                            <img v-bind:src="dog.default_image_url" class="dog-pict kd mx-auto d-block rounded">
+                            <img v-bind:src="dog.default_image_url ? dog.image_url : dog.default_image_url" class="dog-pict kd mx-auto d-block rounded">
                             <div class="work_detail">
                                 <h2 class="mb-0 text-display">{{ dog.name }}</h2>
                                 <p class="mb-0 text-display">{{ dog.bio }}</p>
